@@ -1,0 +1,14 @@
+{
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist",
+  "devCommand": "pnpm dev",
+  "installCommand": "pnpm install",
+  "framework": "astro",
+  "public": false,
+  "analytics": {
+    "enable": true
+  },
+  "speedInsights": {
+    "enable": true
+  }
+}

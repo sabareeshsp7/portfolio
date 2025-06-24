@@ -1,13 +1,33 @@
 ---
 import "../styles/global.css";
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 ---
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
+  <meta name="description" content="Sabareesh SP - Engineering Student & AI/ML Enthusiast. Explore my portfolio showcasing innovative projects in artificial intelligence, machine learning, and software development." />
+  <meta name="keywords" content="Sabareesh SP, AI Engineer, Machine Learning, Software Development, Portfolio, Engineering Student, Artificial Intelligence" />
+  <meta name="author" content="Sabareesh SP" />
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Sabareesh SP - AI/ML Engineer Portfolio" />
+  <meta property="og:description" content="Engineering Student & AI/ML Enthusiast showcasing innovative projects and expertise" />
+  <meta property="og:url" content="https://sabareeshsp.vercel.app" />
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:title" content="Sabareesh SP - AI/ML Engineer Portfolio" />
+  <meta property="twitter:description" content="Engineering Student & AI/ML Enthusiast showcasing innovative projects and expertise" />
+  
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <title>Sabareesh SP - AI/ML Engineer & Developer Portfolio</title>
 </head>
 <body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white font-sans">
   <slot />
+  <Analytics />
+  <SpeedInsights />
 </body>
 </html>
