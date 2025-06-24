@@ -1,0 +1,257 @@
+---
+// Navigation data
+const navItems = [
+  { href: "#about", label: "About", icon: "👨‍💻" },
+  { href: "#projects", label: "Projects", icon: "🚀" },
+  { href: "#contact", label: "Contact", icon: "📧" }
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-md border-b border-gray-700/50 shadow-lg" role="banner">
+  <nav class="max-w-7xl mx-auto px-8 py-4" aria-label="Main navigation">
+    <div class="flex justify-between items-center">
+      
+      <!-- Logo/Brand -->
+      <div class="flex items-center space-x-2">
+        <div class="w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 rounded-lg flex items-center justify-center">
+          <span class="text-white font-bold text-lg">🧠</span>
+        </div>
+        <h1 class="text-xl font-black text-white">
+          <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            AI Portfolio
+          </span>
+        </h1>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <ul class="hidden md:flex items-center space-x-2" role="menubar">
+        {navItems.map((item) => (
+          <li role="none">
+            <a 
+              href={item.href}
+              class="flex items-center gap-2 px-4 py-2 rounded-full text-gray-300 hover:text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-600/20 hover:to-purple-600/20 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+              role="menuitem"
+              aria-label={`Navigate to ${item.label} section`}
+            >
+              <span class="text-sm">{item.icon}</span>
+              <span class="font-medium">{item.label}</span>
+            </a>
+          </li>
+        ))}
+          <!-- CTA Button in Header -->
+        <li role="none">
+          <button 
+            class="ml-4 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white font-bold py-2 px-6 rounded-full text-sm transition-all duration-300 hover:scale-105 hover:shadow-xl transform active:scale-95 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+            onclick="openRoadmapFromHeader()"
+            aria-label="Explore my journey - open interactive roadmap"
+          >
+            <span class="flex items-center gap-2">
+              <span>✨</span>
+              Explore Journey
+            </span>
+          </button>
+        </li>
+      </ul>
+
+      <!-- Mobile Menu Button -->
+      <button 
+        class="md:hidden p-2 rounded-lg bg-gradient-to-r from-blue-600/20 to-purple-600/20 text-white hover:from-blue-600/30 hover:to-purple-600/30 transition-all duration-300"
+        onclick="toggleMobileMenu()"
+        aria-label="Toggle mobile navigation menu"
+        aria-expanded="false"
+        id="mobile-menu-button"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    <div 
+      class="md:hidden mt-4 opacity-0 max-h-0 overflow-hidden transition-all duration-300 ease-in-out"
+      id="mobile-menu"
+      role="menu"
+      aria-labelledby="mobile-menu-button"
+    >
+      <div class="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-xl p-4 border border-gray-700">
+        <ul class="space-y-3" role="none">
+          {navItems.map((item) => (
+            <li role="none">
+              <a 
+                href={item.href}
+                class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-blue-600/20 hover:to-purple-600/20 transition-all duration-300"
+                role="menuitem"
+                onclick="closeMobileMenu()"
+                aria-label={`Navigate to ${item.label} section`}
+              >
+                <span class="text-lg">{item.icon}</span>
+                <span class="font-medium">{item.label}</span>
+              </a>
+            </li>
+          ))}
+            <!-- Mobile CTA -->
+          <li role="none" class="pt-3 border-t border-gray-700">
+            <button 
+              class="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl transform active:scale-95"
+              onclick="openRoadmapFromHeader(); closeMobileMenu()"
+              aria-label="Explore my journey - open interactive roadmap"
+            >
+              <span class="flex items-center justify-center gap-2">
+                <span>✨</span>
+                Explore My Journey
+              </span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<style>  /* Header animations and effects */
+  header {
+    animation: slideDown 0.6s ease-out;
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.95) 0%, rgba(31, 41, 55, 0.95) 50%, rgba(17, 24, 39, 0.95) 100%);
+  }
+  
+  header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(59, 130, 246, 0.5) 20%, rgba(139, 92, 246, 0.5) 50%, rgba(236, 72, 153, 0.5) 80%, transparent 100%);
+  }
+  
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  /* Smooth scrolling for navigation */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Mobile menu animations */
+  #mobile-menu.active {
+    opacity: 1;
+    max-height: 400px;
+  }
+  
+  /* Logo animation */
+  .w-10.h-10 {
+    animation: logoFloat 3s ease-in-out infinite;
+  }
+  
+  @keyframes logoFloat {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-3px) rotate(5deg); }
+  }
+  
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    header,
+    .w-10.h-10 {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  // Mobile menu functionality
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const button = document.getElementById('mobile-menu-button');
+    
+    if (menu && button) {
+      const isActive = menu.classList.contains('active');
+      
+      if (isActive) {
+        menu.classList.remove('active');
+        button.setAttribute('aria-expanded', 'false');
+      } else {
+        menu.classList.add('active');
+        button.setAttribute('aria-expanded', 'true');
+      }
+    }
+  }
+  
+  function closeMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const button = document.getElementById('mobile-menu-button');
+    
+    if (menu && button) {
+      menu.classList.remove('active');
+      button.setAttribute('aria-expanded', 'false');
+    }
+  }
+    // Smooth scroll to explore section
+  function scrollToExplore() {
+    const heroSection = document.querySelector('section[role="main"]');
+    if (heroSection) {
+      heroSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  }
+
+  // Open roadmap modal from header
+  function openRoadmapFromHeader() {
+    // Check if openRoadmap function exists (from Hero component)
+    if (typeof (window as any).openRoadmap === 'function') {
+      (window as any).openRoadmap();
+    } else {
+      // Fallback: scroll to hero section
+      scrollToExplore();
+    }
+  }
+  
+  // Header scroll effect
+  let lastScrollY = window.scrollY;
+  
+  window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    const currentScrollY = window.scrollY;
+    
+    if (header) {
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Scrolling down - hide header
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        // Scrolling up - show header
+        header.style.transform = 'translateY(0)';
+      }
+      
+      // Add backdrop blur based on scroll
+      if (currentScrollY > 50) {
+        header.classList.add('bg-gray-900/98');
+        header.classList.remove('bg-gray-900/95');
+      } else {
+        header.classList.add('bg-gray-900/95');
+        header.classList.remove('bg-gray-900/98');
+      }
+    }
+    
+    lastScrollY = currentScrollY;
+  });
+    // Close mobile menu when clicking outside
+  document.addEventListener('click', (e) => {
+    const menu = document.getElementById('mobile-menu');
+    const button = document.getElementById('mobile-menu-button');
+    const target = e.target as Node;
+    
+    if (menu && button && target && !button.contains(target) && !menu.contains(target)) {
+      closeMobileMenu();
+    }
+  });
+</script>

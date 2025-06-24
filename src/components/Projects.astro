@@ -1,0 +1,181 @@
+---
+// Projects data
+const projects = [
+  {
+    id: 1,
+    title: "DermaSense AI App",
+    description: "Advanced AI-powered dermatology application for skin condition analysis and diagnosis with real-time image processing.",
+    gradient: "from-purple-500 to-pink-500",
+    buttonColor: "from-purple-600 to-pink-600"
+  },
+  {
+    id: 2,
+    title: "Carcino AI – Skin Cancer Detector",
+    description: "Revolutionary machine learning platform for early skin cancer detection using computer vision and deep learning algorithms.",
+    gradient: "from-cyan-500 to-blue-500",
+    buttonColor: "from-cyan-600 to-blue-600"
+  },
+  {
+    id: 3,
+    title: "Real-Time Inventory Tracker",
+    description: "Full-stack inventory management system with live updates, analytics dashboard, and automated stock alerts.",
+    gradient: "from-green-500 to-teal-500",
+    buttonColor: "from-green-600 to-teal-600"
+  },
+  {
+    id: 4,
+    title: "Astro Blog Engine",
+    description: "Lightning-fast static blog generator built with Astro, featuring markdown support, SEO optimization, and dynamic themes.",
+    gradient: "from-orange-500 to-red-500",
+    buttonColor: "from-orange-600 to-red-600"
+  },
+  {
+    id: 5,
+    title: "Full-Stack AI Assistant",
+    description: "Intelligent conversational AI platform with natural language processing, context awareness, and multi-modal interactions.",
+    gradient: "from-violet-500 to-purple-500",
+    buttonColor: "from-violet-600 to-purple-600"
+  }
+];
+---
+
+<section id="projects" class="min-h-screen bg-gray-900 py-20 px-8">
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 
+        class="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight"
+        style="opacity: 0; transform: translateY(50px);"
+        data-animate="header"
+      >
+        My Projects
+      </h2>
+      <p 
+        class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+        style="opacity: 0; transform: translateY(30px);"
+        data-animate="subtitle"
+      >
+        Innovative solutions crafted with cutting-edge technology and creative vision
+      </p>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects.map((project, index) => (
+        <div 
+          class={`project-card bg-gradient-to-br ${project.gradient} rounded-xl p-8 shadow-2xl transform transition-all duration-500 hover:scale-105 hover:shadow-3xl cursor-pointer group`}
+          style="opacity: 0; transform: translateY(50px);"
+          data-animate="card"
+          data-delay={index * 0.2}
+        >
+          <!-- Card Content -->
+          <div class="h-full flex flex-col justify-between">
+            <div>
+              <h3 class="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-yellow-200 transition-colors duration-300">
+                {project.title}
+              </h3>
+              <p class="text-white/90 text-base md:text-lg leading-relaxed mb-6">
+                {project.description}
+              </p>
+            </div>
+            
+            <!-- CTA Button -->
+            <button 
+              class={`w-full bg-gradient-to-r ${project.buttonColor} text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 hover:shadow-lg hover:scale-105 focus:outline-none focus:ring-4 focus:ring-white/20 transform hover:-translate-y-1`}
+            >
+              <span class="flex items-center justify-center gap-2">
+                View Project
+                <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <!-- Decorative Elements -->
+          <div class="absolute top-4 right-4 w-20 h-20 bg-white/10 rounded-full blur-xl group-hover:bg-white/20 transition-all duration-500"></div>
+          <div class="absolute bottom-4 left-4 w-16 h-16 bg-white/5 rounded-full blur-lg group-hover:bg-white/10 transition-all duration-500"></div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="text-center mt-16">
+      <div 
+        class="inline-block bg-gradient-to-r from-indigo-500 to-purple-500 p-1 rounded-xl"
+        style="opacity: 0; transform: translateY(30px);"
+        data-animate="cta"
+      >
+        <button class="bg-gray-900 hover:bg-gray-800 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 hover:scale-105">
+          <span class="text-lg md:text-xl">
+            View All Projects on GitHub
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .project-card {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+  
+  .project-card:hover::before {
+    transform: translateX(100%);
+  }
+</style>
+
+<script>
+  import { animate } from "motion";
+
+  // Animate section header
+  animate(
+    "[data-animate='header']",
+    { opacity: [0, 1], transform: ["translateY(50px)", "translateY(0px)"] },
+    { duration: 0.8, delay: 0.2 }
+  );
+
+  // Animate subtitle
+  animate(
+    "[data-animate='subtitle']",
+    { opacity: [0, 1], transform: ["translateY(30px)", "translateY(0px)"] },
+    { duration: 0.8, delay: 0.4 }
+  );
+
+  // Animate project cards with stagger effect
+  const cards = document.querySelectorAll("[data-animate='card']");
+  cards.forEach((card, index) => {
+    animate(
+      card,
+      { 
+        opacity: [0, 1], 
+        transform: ["translateY(50px) scale(0.9)", "translateY(0px) scale(1)"]
+      },
+      { 
+        duration: 0.8, 
+        delay: 0.6 + (index * 0.2)
+      }
+    );
+  });
+
+  // Animate bottom CTA
+  animate(
+    "[data-animate='cta']",
+    { opacity: [0, 1], transform: ["translateY(30px)", "translateY(0px)"] },
+    { duration: 0.8, delay: 1.4 }
+  );
+</script>

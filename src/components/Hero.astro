@@ -1,0 +1,447 @@
+---
+// Personal portfolio hero data
+const heroData = {
+  title: "I'm building the future with",
+  subtitle: "Code & Intelligence",
+  description: "Engineering student passionate about AI/ML and software development. I create innovative solutions through machine learning, web technologies, and open-source contributions that solve real-world problems.",
+  backgroundQuestion: "What describes me best?",
+  backgroundOptions: [
+    { id: "student", label: "I'm an Engineering Student", active: true },
+    { id: "self-taught", label: "I'm Self-Taught", active: false }
+  ],
+  statText: "Continuously learning and building projects that combine AI/ML with modern web technologies",
+  ctaText: "Explore My Journey",
+  skills: ["AI/ML Enthusiast", "Full-Stack Developer", "Open Source Contributor"]
+};
+---
+<section class="min-h-screen bg-gray-900 flex items-center px-8 lg:px-16 pt-20" role="main" aria-label="Portfolio Hero Section">
+  <div class="max-w-7xl mx-auto w-full">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      
+      <!-- Left Side - AI/Development Icon (First on Mobile) -->
+      <div 
+        class="order-1 lg:order-1 flex justify-center lg:justify-start"
+        style="opacity: 0; transform: translateX(-50px);"
+        data-animate="image"
+        role="img"
+        aria-label="AI and Development Illustration"
+      >
+        <div class="relative">
+          <!-- AI/Brain Icon with Neural Network Effect -->
+          <div class="w-80 h-96 lg:w-96 lg:h-[500px] bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 rounded-2xl flex items-center justify-center overflow-hidden relative">
+            <div class="w-full h-full bg-gradient-to-br from-blue-400/20 via-purple-500/20 to-pink-400/20 flex items-center justify-center backdrop-blur-sm">
+              <!-- AI Brain Icon -->
+              <div class="relative">
+                <svg class="w-40 h-40 text-white drop-shadow-2xl" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c1.19 0 2.34-.21 3.41-.6.3-.11.49-.4.49-.72 0-.43-.35-.78-.78-.78-.19 0-.37.07-.51.18-.8.28-1.65.43-2.53.43-3.86 0-7-3.14-7-7s3.14-7 7-7 7 3.14 7 7c0 .88-.15 1.73-.43 2.53-.11.14-.18.32-.18.51 0 .43.35.78.78.78.32 0 .61-.19.72-.49.39-1.07.6-2.22.6-3.41C22 6.48 17.52 2 12 2zm-1.5 6c-.28 0-.5.22-.5.5v3c0 .28.22.5.5.5s.5-.22.5-.5V9h1c.28 0 .5-.22.5-.5s-.22-.5-.5-.5h-1.5zm3 0c-.28 0-.5.22-.5.5s.22.5.5.5h1v3c0 .28.22.5.5.5s.5-.22.5-.5V9c0-.28-.22-.5-.5-.5h-2z"/>
+                </svg>
+                
+                <!-- Floating particles -->
+                <div class="absolute -top-2 -right-2 w-4 h-4 bg-yellow-400 rounded-full animate-pulse"></div>
+                <div class="absolute -bottom-2 -left-2 w-3 h-3 bg-green-400 rounded-full animate-pulse delay-1000"></div>
+                <div class="absolute top-1/2 -right-4 w-2 h-2 bg-pink-400 rounded-full animate-pulse delay-500"></div>
+              </div>
+            </div>
+            
+            <!-- Neural network lines -->
+            <div class="absolute inset-0 opacity-30">
+              <svg class="w-full h-full" viewBox="0 0 400 500" aria-hidden="true">
+                <defs>
+                  <linearGradient id="neuralGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+                    <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:0.6" />
+                    <stop offset="100%" style="stop-color:#ec4899;stop-opacity:0.4" />
+                  </linearGradient>
+                </defs>
+                <path d="M50,100 Q200,50 350,150" stroke="url(#neuralGradient)" stroke-width="2" fill="none" class="animate-pulse"/>
+                <path d="M50,300 Q200,250 350,350" stroke="url(#neuralGradient)" stroke-width="2" fill="none" class="animate-pulse delay-300"/>
+                <path d="M100,200 Q200,150 300,250" stroke="url(#neuralGradient)" stroke-width="1.5" fill="none" class="animate-pulse delay-700"/>
+              </svg>
+            </div>
+          </div>
+          
+          <!-- Decorative tech elements -->
+          <div class="absolute -top-4 -right-4 w-20 h-20 bg-cyan-400 rounded-full opacity-20 blur-xl animate-pulse"></div>
+          <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-purple-400 rounded-full opacity-20 blur-lg animate-pulse delay-1000"></div>
+          <div class="absolute top-1/4 -left-6 w-12 h-12 bg-pink-400 rounded-full opacity-15 blur-md animate-pulse delay-500"></div>
+        </div>
+      </div>
+
+      <!-- Right Side - Personal Brand Content (Second on Mobile) -->
+      <div 
+        class="order-2 lg:order-2 text-center lg:text-left"
+        style="opacity: 0; transform: translateX(50px);"
+        data-animate="content"
+      >
+        <!-- SEO-Optimized Main Heading -->
+        <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-6 leading-tight">
+          <span class="block">{heroData.title}</span>
+          <span class="block bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+            {heroData.subtitle}
+          </span>
+        </h1>
+
+        <!-- Skills Tags -->
+        <div class="flex flex-wrap justify-center lg:justify-start gap-2 mb-6">
+          {heroData.skills.map((skill) => (
+            <span class="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-sm font-medium border border-gray-700 hover:border-purple-500 transition-colors duration-300">
+              {skill}
+            </span>
+          ))}
+        </div>
+
+        <!-- Personal Introduction -->
+        <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed">
+          {heroData.description}
+        </p>
+
+        <!-- Background Question -->
+        <div class="mb-8">
+          <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
+            {heroData.backgroundQuestion}
+          </h2>
+
+          <!-- Personal Background Options -->
+          <div class="flex flex-col sm:flex-row gap-4 mb-6">
+            {heroData.backgroundOptions.map((option) => (
+              <button 
+                class={`px-6 py-4 rounded-full border-2 transition-all duration-300 text-left flex-1 ${
+                  option.active 
+                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 border-blue-500 text-white shadow-lg' 
+                    : 'border-gray-600 text-gray-300 hover:border-gray-500 hover:bg-gray-800'
+                }`}
+                data-background={option.id}
+                aria-label={`Select ${option.label}`}
+                role="radio"
+                aria-checked={option.active}
+              >
+                <div class="flex items-center gap-3">
+                  <div class={`w-3 h-3 rounded-full ${option.active ? 'bg-white' : 'bg-gray-600'}`}></div>
+                  <span class="text-base md:text-lg font-medium">{option.label}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          <!-- Personal Stats/Mission Text -->
+          <p class="text-gray-400 text-center sm:text-left mb-8 italic">
+            {heroData.statText}
+          </p>
+        </div>
+
+        <!-- Call-to-Action Button - Centered on All Devices -->
+        <div class="flex justify-center">
+          <button 
+            class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-full text-lg md:text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl transform active:scale-95 focus:outline-none focus:ring-4 focus:ring-purple-500/50"
+            style="opacity: 0; transform: translateY(20px);"
+            data-animate="cta"
+            onclick="openRoadmap()"
+            aria-label={`${heroData.ctaText} - Open interactive roadmap`}
+          >
+            <span class="flex items-center gap-2">
+              {heroData.ctaText}
+              <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+              </svg>
+            </span>
+          </button>
+        </div>
+
+        <!-- Additional SEO-friendly hidden text -->
+        <div class="sr-only">
+          Software engineering student portfolio showcasing AI/ML projects, web development skills, and open-source contributions. Specializing in machine learning, artificial intelligence, and modern web technologies.
+        </div>
+      </div>
+    </div>  </div>
+</section>
+
+<!-- Roadmap Modal -->
+<div 
+  id="roadmap-modal" 
+  class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4"
+  onclick="closeRoadmap()"
+  role="dialog"
+  aria-labelledby="roadmap-title"
+  aria-describedby="roadmap-description"
+>
+  <div 
+    class="roadmap-content bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-8 rounded-2xl max-w-2xl w-full border border-gray-700 shadow-2xl"
+    onclick="event.stopPropagation()"
+  >
+    <!-- Modal Header -->
+    <div class="flex justify-between items-center mb-8">
+      <div>
+        <h2 id="roadmap-title" class="text-3xl font-bold text-white mb-2">
+          🗺️ My Developer Journey
+        </h2>
+        <p id="roadmap-description" class="text-gray-400">
+          Explore my path as an AI/ML enthusiast and software engineer
+        </p>
+      </div>
+      <button 
+        onclick="closeRoadmap()"
+        class="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-gray-700"
+        aria-label="Close roadmap modal"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Roadmap Steps -->
+    <div class="space-y-6">
+      <!-- Step 1: About -->
+      <div 
+        class="roadmap-step flex items-center p-4 rounded-xl bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:border-blue-400 transition-all duration-300 cursor-pointer group"
+        onclick="navigateToSection('about')"
+      >
+        <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
+          <span class="text-white font-bold text-lg">1</span>
+        </div>
+        <div class="flex-grow">
+          <h3 class="text-xl font-bold text-white mb-1 group-hover:text-blue-300 transition-colors">
+            👨‍💻 About Me
+          </h3>
+          <p class="text-gray-400 text-sm">
+            Learn about my background, skills, and passion for AI/ML development
+          </p>
+        </div>
+        <svg class="w-5 h-5 text-gray-400 group-hover:text-blue-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </div>
+
+      <!-- Step 2: Projects -->
+      <div 
+        class="roadmap-step flex items-center p-4 rounded-xl bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 hover:border-purple-400 transition-all duration-300 cursor-pointer group"
+        onclick="navigateToSection('projects')"
+      >
+        <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-4">
+          <span class="text-white font-bold text-lg">2</span>
+        </div>
+        <div class="flex-grow">
+          <h3 class="text-xl font-bold text-white mb-1 group-hover:text-purple-300 transition-colors">
+            🚀 My Projects
+          </h3>
+          <p class="text-gray-400 text-sm">
+            Explore my AI/ML projects, web applications, and open-source contributions
+          </p>
+        </div>
+        <svg class="w-5 h-5 text-gray-400 group-hover:text-purple-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </div>
+
+      <!-- Step 3: Contact -->
+      <div 
+        class="roadmap-step flex items-center p-4 rounded-xl bg-gradient-to-r from-pink-600/20 to-orange-600/20 border border-pink-500/30 hover:border-pink-400 transition-all duration-300 cursor-pointer group"
+        onclick="navigateToSection('contact')"
+      >
+        <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-pink-500 to-orange-600 rounded-full flex items-center justify-center mr-4">
+          <span class="text-white font-bold text-lg">3</span>
+        </div>
+        <div class="flex-grow">
+          <h3 class="text-xl font-bold text-white mb-1 group-hover:text-pink-300 transition-colors">
+            📧 Get In Touch
+          </h3>
+          <p class="text-gray-400 text-sm">
+            Ready to collaborate? Let's connect and build something amazing together
+          </p>
+        </div>
+        <svg class="w-5 h-5 text-gray-400 group-hover:text-pink-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-8 pt-6 border-t border-gray-700 text-center">
+      <p class="text-gray-400 text-sm">
+        ✨ Click any step to begin your journey through my portfolio
+      </p>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Custom tech-focused animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+  }
+  
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 20px rgba(147, 51, 234, 0.3);
+      transform: scale(1);
+    }
+    50% { 
+      box-shadow: 0 0 40px rgba(147, 51, 234, 0.6);
+      transform: scale(1.02);
+    }
+  }
+  
+  @keyframes neural-pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.8; }
+  }
+  
+  .floating {
+    animation: float 4s ease-in-out infinite;
+  }
+  
+  .neural-animation {
+    animation: neural-pulse 2s ease-in-out infinite;
+  }
+  
+  /* Enhanced hover effects for buttons */
+  button[data-background]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  button[data-background].active {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+  
+  /* Gradient text animation */
+  .gradient-text {
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ec4899, #3b82f6);
+    background-size: 300% 300%;
+    animation: gradient-shift 3s ease infinite;
+  }
+  
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    .floating,
+    .neural-animation,
+    .gradient-text {
+      animation: none;
+    }
+  }
+  
+  /* Focus indicators */
+  button:focus-visible {
+    outline: 2px solid #8b5cf6;
+    outline-offset: 2px;
+  }
+</style>
+
+<script>
+  import { animate } from "motion";
+
+  // Animate image from left
+  animate(
+    "[data-animate='image']",
+    { opacity: [0, 1], transform: ["translateX(-50px)", "translateX(0px)"] },
+    { duration: 0.8, delay: 0.2 }
+  );
+
+  // Animate content from right
+  animate(
+    "[data-animate='content']",
+    { opacity: [0, 1], transform: ["translateX(50px)", "translateX(0px)"] },
+    { duration: 0.8, delay: 0.4 }
+  );
+
+  // Animate CTA button
+  animate(
+    "[data-animate='cta']",
+    { opacity: [0, 1], transform: ["translateY(20px)", "translateY(0px)"] },
+    { duration: 0.6, delay: 0.8 }
+  );  // Interactive background selection with accessibility
+  const backgroundButtons = document.querySelectorAll('[data-background]');
+  backgroundButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remove active class from all buttons and update aria-checked
+      backgroundButtons.forEach(btn => {
+        btn.classList.remove('bg-gradient-to-r', 'from-blue-600', 'to-purple-600', 'border-blue-500', 'text-white', 'shadow-lg');
+        btn.classList.add('border-gray-600', 'text-gray-300');
+        btn.setAttribute('aria-checked', 'false');
+        const dot = btn.querySelector('.w-3');
+        if (dot) {
+          dot.classList.remove('bg-white');
+          dot.classList.add('bg-gray-600');
+        }
+      });
+      
+      // Add active class to clicked button and update aria-checked
+      button.classList.add('bg-gradient-to-r', 'from-blue-600', 'to-purple-600', 'border-blue-500', 'text-white', 'shadow-lg');
+      button.classList.remove('border-gray-600', 'text-gray-300');
+      button.setAttribute('aria-checked', 'true');
+      const activeDot = button.querySelector('.w-3');
+      if (activeDot) {
+        activeDot.classList.add('bg-white');
+        activeDot.classList.remove('bg-gray-600');
+      }
+      
+      // Add animation effect
+      animate(
+        button,
+        { scale: [1, 1.05, 1] },
+        { duration: 0.3 }
+      );
+    });
+  });
+  // Add floating animation to the image
+  const imageElement = document.querySelector('[data-animate="image"] > div');
+  if (imageElement) {
+    imageElement.classList.add('floating');
+  }
+
+  // Roadmap Modal Functionality
+  function openRoadmap() {
+    const modal = document.getElementById('roadmap-modal');
+    if (modal) {
+      modal.style.display = 'flex';
+      // Animate modal in
+      animate(
+        '#roadmap-modal',
+        { opacity: [0, 1] },
+        { duration: 0.3 }
+      );
+      animate(
+        '.roadmap-content',
+        { transform: ['scale(0.8) translateY(20px)', 'scale(1) translateY(0px)'] },
+        { duration: 0.4, delay: 0.1 }
+      );
+    }
+  }
+
+  function closeRoadmap() {
+    const modal = document.getElementById('roadmap-modal');
+    if (modal) {
+      animate(
+        '#roadmap-modal',
+        { opacity: [1, 0] },
+        { duration: 0.2 }
+      ).finished.then(() => {
+        modal.style.display = 'none';
+      });
+    }
+  }
+  function navigateToSection(sectionId: string) {
+    closeRoadmap();
+    setTimeout(() => {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
+    }, 300);
+  }
+
+  // Make functions globally available
+  (window as any).openRoadmap = openRoadmap;
+  (window as any).closeRoadmap = closeRoadmap;
+  (window as any).navigateToSection = navigateToSection;
+</script>

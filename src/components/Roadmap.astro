@@ -1,0 +1,401 @@
+---
+// Roadmap section data
+const roadmapData = {
+  title: "My Developer Journey",
+  subtitle: "Follow the path of my growth and achievements",
+  milestones: [
+    {
+      id: "about",
+      title: "About Me",
+      description: "Learn about my background, skills, and passion for technology",
+      icon: "👨‍💻",
+      color: "yellow",
+      position: "top-left"
+    },
+    {
+      id: "projects", 
+      title: "My Projects",
+      description: "Explore my AI/ML projects and web applications",
+      icon: "🚀",
+      color: "blue",
+      position: "top-right"
+    },
+    {
+      id: "contact",
+      title: "Get In Touch",
+      description: "Ready to collaborate? Let's connect and build together",
+      icon: "📧", 
+      color: "red",
+      position: "bottom-right"
+    }
+  ]
+};
+---
+
+<section class="py-20 px-8 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 relative overflow-hidden">
+  <div class="max-w-6xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-black text-white mb-4">
+        <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
+          {roadmapData.title}
+        </span>
+      </h2>
+      <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+        {roadmapData.subtitle}
+      </p>
+    </div>
+
+    <!-- Interactive Roadmap -->
+    <div class="relative h-[600px] md:h-[500px] lg:h-[450px] mx-auto max-w-4xl">
+      <!-- Roadmap Path SVG -->
+      <div class="absolute inset-0 flex items-center justify-center">
+        <svg 
+          class="w-full h-full" 
+          viewBox="0 0 800 400" 
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+        >
+          <defs>
+            <!-- Gradient definitions for the path -->
+            <linearGradient id="roadGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#4B5563;stop-opacity:1" />
+              <stop offset="50%" style="stop-color:#374151;stop-opacity:1" />
+              <stop offset="100%" style="stop-color:#4B5563;stop-opacity:1" />
+            </linearGradient>
+            
+            <!-- Animated dashed line -->
+            <pattern id="dashPattern" patternUnits="userSpaceOnUse" width="20" height="4">
+              <rect width="10" height="4" fill="#9CA3AF" />
+              <rect x="10" width="10" height="4" fill="transparent" />
+            </pattern>
+          </defs>
+          
+          <!-- Main road path -->
+          <path 
+            d="M 100 80 Q 200 40 350 80 Q 500 120 650 80 Q 700 100 700 160 Q 700 220 650 260 Q 500 300 350 260 Q 200 220 150 280 Q 100 340 150 380"
+            stroke="url(#roadGradient)" 
+            stroke-width="40" 
+            fill="none" 
+            stroke-linecap="round"
+            class="drop-shadow-lg"
+          />
+          
+          <!-- Dashed center line -->
+          <path 
+            d="M 100 80 Q 200 40 350 80 Q 500 120 650 80 Q 700 100 700 160 Q 700 220 650 260 Q 500 300 350 260 Q 200 220 150 280 Q 100 340 150 380"
+            stroke="url(#dashPattern)" 
+            stroke-width="3" 
+            fill="none" 
+            stroke-linecap="round"
+            class="animate-pulse"
+          />
+          
+          <!-- Road edges -->
+          <path 
+            d="M 100 60 Q 200 20 350 60 Q 500 100 650 60 Q 700 80 700 140 Q 700 200 650 240 Q 500 280 350 240 Q 200 200 150 260 Q 100 320 150 360"
+            stroke="#6B7280" 
+            stroke-width="2" 
+            fill="none" 
+            stroke-linecap="round"
+            opacity="0.6"
+          />
+          <path 
+            d="M 100 100 Q 200 60 350 100 Q 500 140 650 100 Q 700 120 700 180 Q 700 240 650 280 Q 500 320 350 280 Q 200 240 150 300 Q 100 360 150 400"
+            stroke="#6B7280" 
+            stroke-width="2" 
+            fill="none" 
+            stroke-linecap="round"
+            opacity="0.6"
+          />
+        </svg>
+      </div>
+
+      <!-- Milestone Markers -->
+      <!-- About Me - Top Left -->
+      <div 
+        class="absolute top-12 left-16 md:left-20 lg:left-24 group cursor-pointer"
+        onclick="navigateToSection('about')"
+        data-milestone="about"
+      >
+        <div class="relative">
+          <!-- Yellow marker circle -->
+          <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center shadow-xl border-4 border-white group-hover:scale-110 transition-all duration-300 animate-pulse">
+            <span class="text-2xl">👨‍💻</span>
+          </div>
+          
+          <!-- Milestone info card -->
+          <div class="absolute top-20 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+            <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded-xl border border-gray-700 backdrop-blur-sm w-64 shadow-2xl">
+              <h3 class="text-lg font-bold text-yellow-400 mb-2">About Me</h3>
+              <p class="text-gray-300 text-sm">Learn about my background, skills, and passion for technology</p>
+              <div class="mt-3 text-xs text-gray-400">Click to explore →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects - Top Right -->
+      <div 
+        class="absolute top-8 right-12 md:right-16 lg:right-20 group cursor-pointer"
+        onclick="navigateToSection('projects')"
+        data-milestone="projects"
+      >
+        <div class="relative">
+          <!-- Blue marker circle -->
+          <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full flex items-center justify-center shadow-xl border-4 border-white group-hover:scale-110 transition-all duration-300 animate-pulse" style="animation-delay: 0.5s">
+            <span class="text-2xl">🚀</span>
+          </div>
+          
+          <!-- Milestone info card -->
+          <div class="absolute top-20 right-0 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+            <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded-xl border border-gray-700 backdrop-blur-sm w-64 shadow-2xl">
+              <h3 class="text-lg font-bold text-blue-400 mb-2">My Projects</h3>
+              <p class="text-gray-300 text-sm">Explore my AI/ML projects and web applications</p>
+              <div class="mt-3 text-xs text-gray-400">Click to explore →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact - Bottom Right -->
+      <div 
+        class="absolute bottom-8 right-16 md:right-20 lg:right-24 group cursor-pointer"
+        onclick="navigateToSection('contact')"
+        data-milestone="contact"
+      >
+        <div class="relative">
+          <!-- Red marker circle -->
+          <div class="w-16 h-16 bg-gradient-to-br from-red-400 to-pink-500 rounded-full flex items-center justify-center shadow-xl border-4 border-white group-hover:scale-110 transition-all duration-300 animate-pulse" style="animation-delay: 1s">
+            <span class="text-2xl">📧</span>
+          </div>
+          
+          <!-- Milestone info card -->
+          <div class="absolute bottom-20 right-0 opacity-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+            <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-4 rounded-xl border border-gray-700 backdrop-blur-sm w-64 shadow-2xl">
+              <h3 class="text-lg font-bold text-red-400 mb-2">Get In Touch</h3>
+              <p class="text-gray-300 text-sm">Ready to collaborate? Let's connect and build together</p>
+              <div class="mt-3 text-xs text-gray-400">Click to explore →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Green starting point - Bottom Left -->
+      <div class="absolute bottom-12 left-32 md:left-36 lg:left-40">
+        <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full flex items-center justify-center shadow-lg border-3 border-white animate-bounce">
+          <span class="text-lg">🏁</span>
+        </div>
+        <div class="absolute top-14 left-1/2 transform -translate-x-1/2">
+          <span class="text-green-400 font-bold text-sm whitespace-nowrap">Start Here</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-12">
+      <p class="text-gray-400 mb-6">
+        🚀 Ready to explore my journey? Click on any milestone to begin!
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <button 
+          onclick="navigateToSection('about')"
+          class="bg-gradient-to-r from-yellow-500 to-orange-600 hover:from-yellow-600 hover:to-orange-700 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 hover:scale-105 text-sm"
+        >
+          👨‍💻 About Me
+        </button>
+        <button 
+          onclick="navigateToSection('projects')"
+          class="bg-gradient-to-r from-blue-500 to-cyan-600 hover:from-blue-600 hover:to-cyan-700 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 hover:scale-105 text-sm"
+        >
+          🚀 Projects
+        </button>
+        <button 
+          onclick="navigateToSection('contact')"
+          class="bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white font-bold py-2 px-6 rounded-full transition-all duration-300 hover:scale-105 text-sm"
+        >
+          📧 Contact
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Roadmap animations */
+  [data-milestone] {
+    animation: milestone-appear 0.8s ease-out forwards;
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  
+  [data-milestone="about"] {
+    animation-delay: 0.2s;
+  }
+  
+  [data-milestone="projects"] {
+    animation-delay: 0.4s;
+  }
+  
+  [data-milestone="contact"] {
+    animation-delay: 0.6s;
+  }
+  
+  @keyframes milestone-appear {
+    from {
+      opacity: 0;
+      transform: scale(0.5) translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  /* Hover effects for milestone cards */
+  .group:hover .absolute {
+    transform: translateY(-5px);
+  }
+  
+  /* Pulsing animation for markers */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(59, 130, 246, 0.6), 0 0 60px rgba(59, 130, 246, 0.3);
+    }
+  }
+  
+  /* Road animation */
+  svg path {
+    stroke-dasharray: 2000;
+    stroke-dashoffset: 2000;
+    animation: draw-road 3s ease-in-out forwards;
+  }
+  
+  @keyframes draw-road {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .absolute.top-12 {
+      top: 2rem;
+      left: 1rem;
+    }
+    
+    .absolute.top-8.right-12 {
+      top: 1.5rem;
+      right: 1rem;
+    }
+    
+    .absolute.bottom-8.right-16 {
+      bottom: 1.5rem;
+      right: 1rem;
+    }
+    
+    .absolute.bottom-12.left-32 {
+      bottom: 2rem;
+      left: 1.5rem;
+    }
+  }
+  
+  /* Accessibility improvements */
+  @media (prefers-reduced-motion: reduce) {
+    [data-milestone],
+    svg path {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  import { animate } from "motion";
+
+  // Navigation function
+  function navigateToSection(sectionId: string) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      
+      // Add a subtle highlight effect to the target section
+      section.classList.add('highlight-section');
+      setTimeout(() => {
+        section.classList.remove('highlight-section');
+      }, 2000);
+    }
+  }
+
+  // Make function globally available
+  (window as any).navigateToSection = navigateToSection;
+
+  // Animate roadmap on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const milestones = entry.target.querySelectorAll('[data-milestone]');
+        milestones.forEach((milestone, index) => {
+          setTimeout(() => {
+            animate(
+              milestone,
+              { 
+                opacity: [0, 1], 
+                transform: ['scale(0.5) translateY(20px)', 'scale(1) translateY(0)'] 
+              },
+              { duration: 0.6 }
+            );
+          }, index * 200);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+
+  // Observe the roadmap section
+  const roadmapSection = document.querySelector('section');
+  if (roadmapSection) {
+    observer.observe(roadmapSection);
+  }
+  // Add interactive effects
+  document.querySelectorAll('[data-milestone]').forEach(milestone => {
+    milestone.addEventListener('mouseenter', () => {
+      const circleElement = milestone.querySelector('.w-16') as HTMLElement;
+      if (circleElement) {
+        animate(
+          circleElement,
+          { scale: [1, 1.15, 1.1] },
+          { duration: 0.3 }
+        );
+      }
+    });
+    
+    milestone.addEventListener('mouseleave', () => {
+      const circleElement = milestone.querySelector('.w-16') as HTMLElement;
+      if (circleElement) {
+        animate(
+          circleElement,
+          { scale: [1.1, 1] },
+          { duration: 0.3 }
+        );
+      }
+    });
+    
+    milestone.addEventListener('click', () => {
+      const circleElement = milestone.querySelector('.w-16') as HTMLElement;
+      if (circleElement) {
+        animate(
+          circleElement,
+          { scale: [1, 0.95, 1] },
+          { duration: 0.2 }
+        );
+      }
+    });
+  });
+</script>
