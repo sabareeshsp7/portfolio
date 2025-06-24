@@ -10,6 +10,9 @@ export default defineConfig({
   adapter: node({
     mode: 'standalone'
   }),
+  redirects: {
+    '/': '/home'
+  },
   vite: {
     plugins: [tailwindcss()]
   }

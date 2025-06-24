@@ -4,6 +4,7 @@
   "devCommand": "pnpm dev",
   "installCommand": "pnpm install",
   "framework": "astro",
+  "ignoreCommand": "false",
   "public": false,
   "rewrites": [],
   "builds": [

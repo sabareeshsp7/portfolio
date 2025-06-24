@@ -1,20 +1,4 @@
 ---
-// Enable prerendering for this page (static generation)
-export const prerender = true;
-
-import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Roadmap from '../components/Roadmap.astro';
-import About from '../components/About.astro';
-import Projects from '../components/Projects.astro';
-import Contact from '../components/Contact.astro';
+// Redirect root to /home
+return Astro.redirect('/home');
 ---
-<BaseLayout>
-  <Header />
-  <Hero />
-  <Roadmap />
-  <About />
-  <Projects />
-  <Contact />
-</BaseLayout>
