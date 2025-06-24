@@ -4,33 +4,32 @@ const contactData = {
   title: "Let's Build Something Amazing Together",
   subtitle: "Ready to collaborate? I'm always excited to work on innovative projects!",
   description: "Whether you have a project idea, want to collaborate on AI/ML research, or just want to connect with a fellow developer, I'd love to hear from you.",
-  contactMethods: [
-    {
+  contactMethods: [    {
       icon: "📧",
       title: "Email",
-      value: "your@email.com",
-      href: "mailto:your@email.com",
+      value: "sabareeshsp7@gmail.com",
+      href: "mailto:sabareeshsp7@gmail.com",
       description: "Send me a message anytime"
     },
     {
       icon: "💼",
       title: "LinkedIn", 
-      value: "/in/yourprofile",
-      href: "https://linkedin.com/in/yourprofile",
+      value: "/in/sabareeshsp7",
+      href: "https://linkedin.com/in/sabareeshsp7",
       description: "Connect professionally"
     },
     {
-      icon: "🐙",
+      icon: "</>",
       title: "GitHub",
-      value: "@yourusername",
-      href: "https://github.com/yourusername",
+      value: "@sabareeshsp7",
+      href: "https://github.com/sabareeshsp7",
       description: "Check out my repositories"
     },
     {
-      icon: "🐦",
+      icon: "𝕏",
       title: "Twitter",
-      value: "@yourusername", 
-      href: "https://twitter.com/yourusername",
+      value: "@sabareeshsp7", 
+      href: "https://twitter.com/sabareeshsp7",
       description: "Follow my tech journey"
     }
   ],
@@ -95,10 +94,9 @@ const contactData = {
     <div class="max-w-2xl mx-auto">
       <div class="bg-gradient-to-br from-gray-800/30 to-gray-900/30 rounded-2xl p-8 border border-gray-700 backdrop-blur-sm">
         <h3 class="text-2xl font-bold text-white mb-6 text-center">
-          💌 Send me a message
+           Send me a message
         </h3>
-        
-        <form class="space-y-6" action="#" method="POST">
+          <form class="space-y-6" id="contact-form">
           <div class="grid md:grid-cols-2 gap-6">
             <div>
               <label for="name" class="block text-sm font-medium text-gray-300 mb-2">
@@ -159,27 +157,85 @@ const contactData = {
           <div class="text-center">
             <button 
               type="submit"
-              class="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 hover:from-purple-700 hover:via-pink-700 hover:to-orange-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl"
+              id="submit-btn"
+              class="bg-gradient-to-r from-purple-600 via-pink-600 to-orange-600 hover:from-purple-700 hover:via-pink-700 hover:to-orange-700 text-white font-bold py-4 px-8 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <span class="flex items-center gap-2">
-                Send Message
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <span class="flex items-center gap-2" id="btn-content">
+                <span id="btn-text">Send Message</span>
+                <svg id="btn-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
+                <svg id="btn-spinner" class="w-5 h-5 animate-spin hidden" fill="none" viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
               </span>
             </button>
           </div>
         </form>
       </div>
-    </div>
-
-    <!-- Footer Note -->
+    </div>    <!-- Footer Note -->
     <div class="text-center mt-12">
       <p class="text-gray-400 italic">
         ✨ Looking forward to hearing from you and exploring new possibilities together!
       </p>
     </div>
   </div>
+
+  <!-- Success Modal -->
+  <div id="success-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl max-w-md w-full border border-green-500/30 shadow-2xl">
+      <div class="text-center">
+        <!-- Success Icon -->
+        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        
+        <!-- Success Message -->
+        <h3 class="text-2xl font-bold text-white mb-2">Message Sent Successfully!</h3>
+        <p class="text-gray-300 mb-6">
+          Thank you for reaching out! I've received your message and will get back to you as soon as possible.
+        </p>
+        
+        <!-- Close Button -->
+        <button 
+          id="close-modal"
+          class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 hover:scale-105"
+        >
+          Awesome!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Error Modal -->
+  <div id="error-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-8 rounded-2xl max-w-md w-full border border-red-500/30 shadow-2xl">
+      <div class="text-center">
+        <!-- Error Icon -->
+        <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </div>
+        
+        <!-- Error Message -->
+        <h3 class="text-2xl font-bold text-white mb-2">Oops! Something went wrong</h3>
+        <p class="text-gray-300 mb-6" id="error-message">
+          There was an issue sending your message. Please try again or contact me directly.
+        </p>
+        
+        <!-- Close Button -->
+        <button 
+          id="close-error-modal"
+          class="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 hover:scale-105"
+        >
+          Try Again
+        </button>
+      </div>
+    </div>  </div>
 </section>
 
 <style>
@@ -212,8 +268,7 @@ const contactData = {
   .group:hover {
     background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
   }
-  
-  @media (prefers-reduced-motion: reduce) {
+    @media (prefers-reduced-motion: reduce) {
     .group,
     form {
       animation: none;
@@ -221,4 +276,254 @@ const contactData = {
       transform: none;
     }
   }
+  
+  /* Modal animations */
+  .modal-enter {
+    animation: modalFadeIn 0.3s ease-out;
+  }
+  
+  .modal-content-enter {
+    animation: modalSlideIn 0.4s ease-out;
+  }
+  
+  @keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes modalSlideIn {
+    from { 
+      opacity: 0;
+      transform: scale(0.8) translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
 </style>
+
+<script>
+  // TypeScript declaration for EmailJS
+  declare global {
+    interface Window {
+      emailjs: {
+        init: (publicKey: string) => void;
+        send: (serviceId: string, templateId: string, templateParams: any) => Promise<any>;
+      };
+    }
+  }
+  // Initialize EmailJS when the script loads
+  function initializeEmailJS() {
+    // Wait for EmailJS to be fully loaded
+    const checkEmailJS = () => {
+      if (typeof window !== 'undefined' && (window as any).emailjs) {
+        // Use your actual public key from EmailJS dashboard
+        (window as any).emailjs.init("7tb2hqb09a3qd6DDK");
+        console.log('✅ EmailJS initialized with key: 7tb2hqb09a3qd6DDK');
+        return true;
+      }
+      return false;
+    };
+
+    // Try immediately, then retry if needed
+    if (!checkEmailJS()) {
+      console.log('⏳ Waiting for EmailJS to load...');
+      setTimeout(() => {
+        if (checkEmailJS()) {
+          console.log('✅ EmailJS loaded and initialized after delay');
+        } else {
+          console.error('❌ EmailJS failed to load');
+        }
+      }, 1000);
+    }
+  }
+  // Form submission handler with EmailJS integration
+  document.addEventListener('DOMContentLoaded', function() {
+    // Ensure EmailJS loads properly
+    function waitForEmailJS() {
+      return new Promise((resolve) => {
+        if (typeof (window as any).emailjs !== 'undefined') {
+          resolve(true);
+          return;
+        }
+        
+        // Load EmailJS if not already loaded
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+        script.onload = () => {
+          setTimeout(() => {
+            if (typeof (window as any).emailjs !== 'undefined') {
+              (window as any).emailjs.init("7tb2hqb09a3qd6DDK");
+              console.log('✅ EmailJS loaded and initialized');
+              resolve(true);
+            } else {
+              console.error('❌ EmailJS failed to load');
+              resolve(false);
+            }
+          }, 200);
+        };
+        document.head.appendChild(script);
+      });
+    }
+    
+    // Initialize EmailJS
+    waitForEmailJS().then(() => {
+      console.log('🚀 EmailJS ready for contact form');
+    });
+    
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement | null;
+    const btnText = document.getElementById('btn-text') as HTMLElement | null;
+    const btnIcon = document.getElementById('btn-icon') as HTMLElement | null;
+    const btnSpinner = document.getElementById('btn-spinner') as HTMLElement | null;
+    const successModal = document.getElementById('success-modal') as HTMLElement | null;
+    const errorModal = document.getElementById('error-modal') as HTMLElement | null;
+    const closeModal = document.getElementById('close-modal') as HTMLButtonElement | null;
+    const closeErrorModal = document.getElementById('close-error-modal') as HTMLButtonElement | null;
+    const errorMessage = document.getElementById('error-message') as HTMLElement | null;
+
+    // Check if all required elements exist
+    if (!form || !submitBtn || !btnText || !btnIcon || !btnSpinner || 
+        !successModal || !errorModal || !closeModal || !closeErrorModal || !errorMessage) {
+      console.error('Contact form: Some required elements not found');
+      return;
+    }
+
+    // Form submission with EmailJS
+    form.addEventListener('submit', async function(e: Event) {
+      e.preventDefault();
+      
+      // Show loading state
+      submitBtn.disabled = true;
+      btnText.textContent = 'Sending...';
+      btnIcon.classList.add('hidden');
+      btnSpinner.classList.remove('hidden');
+        // Get form data
+      const formData = new FormData(form);      const templateParams = {
+        name: formData.get('name') as string,
+        email: formData.get('email') as string,
+        subject: formData.get('subject') as string || 'Portfolio Contact',
+        message: formData.get('message') as string
+      };
+
+      console.log('📧 Attempting to send email...', templateParams);      try {
+        // Check if EmailJS is available and properly initialized
+        if (typeof (window as any).emailjs === 'undefined') {
+          console.error('❌ EmailJS not loaded');
+          throw new Error('EmailJS not loaded. Please refresh the page and try again.');
+        }
+
+        console.log('📧 EmailJS is available, sending email...');
+        console.log('🔑 Using Service ID: service_j37vj2v');
+        console.log('📝 Using Template ID: template_0f8yi3r');
+        console.log('📧 Sending to: sabareeshsp7@gmail.com');        // Send email using EmailJS with your actual IDs
+        const result = await (window as any).emailjs.send(
+          'service_j37vj2v',     // Your actual service ID
+          'template_0f8yi3r',    // Your actual template ID (corrected)
+          templateParams
+        );
+        
+        console.log('✅ Email sent successfully!', result);
+        console.log('📧 Email delivered to: sabareeshsp7@gmail.com');
+        
+        // Success - show success modal
+        showSuccessModal();
+        form.reset();
+        
+      } catch (emailError) {
+        console.error('❌ EmailJS Error Details:', emailError);
+        
+        // Check if it's a specific EmailJS error
+        if (emailError && (emailError as any).text) {
+          console.error('❌ EmailJS Error Message:', (emailError as any).text);
+        }
+        
+        // Show detailed error message
+        let errorMsg = 'Failed to send email via EmailJS. ';
+        if (emailError instanceof Error) {
+          if (emailError.message.includes('not loaded')) {
+            errorMsg += 'Email service not ready. Please refresh and try again. ';
+          } else if (emailError.message.includes('network')) {
+            errorMsg += 'Network error. Please check your internet connection. ';
+          } else {
+            errorMsg += `Error: ${emailError.message}. `;
+          }
+        }
+        errorMsg += 'You can contact me directly at sabareeshsp7@gmail.com';
+        
+        showErrorModal(errorMsg);
+      }finally {
+        // Reset button state
+        submitBtn.disabled = false;
+        btnText.textContent = 'Send Message';
+        btnIcon.classList.remove('hidden');
+        btnSpinner.classList.add('hidden');
+      }
+    });
+
+    // Show success modal
+    function showSuccessModal(): void {
+      if (!successModal) return;
+      
+      successModal.classList.remove('hidden');
+      successModal.classList.add('flex', 'modal-enter');
+      const modalContent = successModal.querySelector('div');
+      if (modalContent) {
+        modalContent.classList.add('modal-content-enter');
+      }
+    }
+
+    // Show error modal
+    function showErrorModal(message: string): void {
+      if (!errorModal || !errorMessage) return;
+      
+      errorMessage.textContent = message;
+      errorModal.classList.remove('hidden');
+      errorModal.classList.add('flex', 'modal-enter');
+      const modalContent = errorModal.querySelector('div');
+      if (modalContent) {
+        modalContent.classList.add('modal-content-enter');
+      }
+    }
+
+    // Close success modal
+    closeModal.addEventListener('click', function() {
+      if (!successModal) return;
+      successModal.classList.add('hidden');
+      successModal.classList.remove('flex', 'modal-enter');
+    });
+
+    // Close error modal
+    closeErrorModal.addEventListener('click', function() {
+      if (!errorModal) return;
+      errorModal.classList.add('hidden');
+      errorModal.classList.remove('flex', 'modal-enter');
+    });
+
+    // Close modal on background click
+    successModal.addEventListener('click', function(e: Event) {
+      if (e.target === successModal && closeModal) {
+        closeModal.click();
+      }
+    });
+
+    errorModal.addEventListener('click', function(e: Event) {
+      if (e.target === errorModal && closeErrorModal) {
+        closeErrorModal.click();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        if (successModal && !successModal.classList.contains('hidden') && closeModal) {
+          closeModal.click();
+        }
+        if (errorModal && !errorModal.classList.contains('hidden') && closeErrorModal) {
+          closeErrorModal.click();
+        }
+      }
+    });
+  });
+</script>
