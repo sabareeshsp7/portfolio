@@ -5,10 +5,20 @@
   "installCommand": "pnpm install",
   "framework": "astro",
   "public": false,
-  "analytics": {
-    "enable": true
-  },
-  "speedInsights": {
-    "enable": true
-  }
+  "rewrites": [],
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
 }
