@@ -1,25 +1,3 @@
 {
-  "buildCommand": "pnpm build",
-  "outputDirectory": "dist",
-  "devCommand": "pnpm dev",
-  "installCommand": "pnpm install",
-  "framework": "astro",
-  "ignoreCommand": "false",
-  "public": false,
-  "rewrites": [],
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ]
+  "framework": "astro"
 }

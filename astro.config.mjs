@@ -1,18 +1,17 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import node from '@astrojs/node';
+import vercel from '@astrojs/vercel';
 
 import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
   output: 'server', // Enable server-side rendering for API endpoints
-  adapter: node({
-    mode: 'standalone'
+  adapter: vercel({
+    webAnalytics: {
+      enabled: false
+    }
   }),
-  redirects: {
-    '/': '/home'
-  },
   vite: {
     plugins: [tailwindcss()]
   }
