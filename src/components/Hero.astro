@@ -65,14 +65,20 @@ const heroData = {
         class="order-2 lg:order-2 text-center lg:text-left"
         style="opacity: 0; transform: translateX(50px);"
         data-animate="content"
-      >
-        <!-- SEO-Optimized Main Heading -->
-        <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-white mb-6 leading-tight">
-          <span class="block">{heroData.title}</span>
-          <span class="block bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            {heroData.subtitle}
-          </span>
-        </h1>
+      >        <!-- Animated Three-Line Headline -->
+        <div class="animated-headline-container text-center lg:text-left mb-8">
+          <h1 class="font-black text-white leading-none overflow-hidden">
+            <div class="animated-line opacity-0" data-line="1">
+              <span class="gradient-text-1">Building code that cares</span>
+            </div>
+            <div class="animated-line opacity-0" data-line="2">
+              <span class="gradient-text-2">systems that scale</span>
+            </div>
+            <div class="animated-line opacity-0" data-line="3">
+              <span class="gradient-text-3">And ideas that matter</span>
+            </div>
+          </h1>
+        </div>
 
         <!-- Skills Tags -->
         <div class="flex flex-wrap justify-center lg:justify-start gap-2 mb-6">
@@ -81,46 +87,10 @@ const heroData = {
               {skill}
             </span>
           ))}
-        </div>
-
-        <!-- Personal Introduction -->
-        <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl leading-relaxed">
+        </div>        <!-- Personal Introduction -->
+        <p class="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl leading-relaxed">
           {heroData.description}
         </p>
-
-        <!-- Background Question -->
-        <div class="mb-8">
-          <h2 class="text-2xl md:text-3xl font-bold text-white mb-6">
-            {heroData.backgroundQuestion}
-          </h2>
-
-          <!-- Personal Background Options -->
-          <div class="flex flex-col sm:flex-row gap-4 mb-6">
-            {heroData.backgroundOptions.map((option) => (
-              <button 
-                class={`px-6 py-4 rounded-full border-2 transition-all duration-300 text-left flex-1 ${
-                  option.active 
-                    ? 'bg-gradient-to-r from-blue-600 to-purple-600 border-blue-500 text-white shadow-lg' 
-                    : 'border-gray-600 text-gray-300 hover:border-gray-500 hover:bg-gray-800'
-                }`}
-                data-background={option.id}
-                aria-label={`Select ${option.label}`}
-                role="radio"
-                aria-checked={option.active}
-              >
-                <div class="flex items-center gap-3">
-                  <div class={`w-3 h-3 rounded-full ${option.active ? 'bg-white' : 'bg-gray-600'}`}></div>
-                  <span class="text-base md:text-lg font-medium">{option.label}</span>
-                </div>
-              </button>
-            ))}
-          </div>
-
-          <!-- Personal Stats/Mission Text -->
-          <p class="text-gray-400 text-center sm:text-left mb-8 italic">
-            {heroData.statText}
-          </p>
-        </div>
 
         <!-- Call-to-Action Button - Centered on All Devices -->
         <div class="flex justify-center">
@@ -359,6 +329,162 @@ const heroData = {
     outline: 2px solid #8b5cf6;
     outline-offset: 2px;
   }
+
+  /* Animated Three-Line Headline Styles */
+  .animated-headline-container {
+    margin-bottom: 3rem;
+    perspective: 1000px;
+  }
+
+  .animated-line {
+    display: block;
+    margin-bottom: 0.5rem;
+    transform: translateY(60px) rotateX(30deg);
+    opacity: 0;
+    animation: slideUpFade 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+
+  .animated-line:nth-child(1) {
+    animation-delay: 0.3s;
+  }
+
+  .animated-line:nth-child(2) {
+    animation-delay: 0.6s;
+  }
+
+  .animated-line:nth-child(3) {
+    animation-delay: 0.9s;
+  }
+
+  @keyframes slideUpFade {
+    0% {
+      opacity: 0;
+      transform: translateY(60px) rotateX(30deg) scale(0.9);
+    }
+    50% {
+      opacity: 0.7;
+      transform: translateY(-10px) rotateX(-5deg) scale(1.02);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg) scale(1);
+    }
+  }
+
+  /* Responsive Font Sizes - Large and Elegant */
+  .animated-line {
+    font-size: 2.5rem; /* 40px - Mobile */
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+
+  @media (min-width: 640px) {
+    .animated-line {
+      font-size: 3.5rem; /* 56px - Small tablet */
+    }
+  }
+
+  @media (min-width: 768px) {
+    .animated-line {
+      font-size: 4.5rem; /* 72px - Tablet */
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .animated-line {
+      font-size: 5.5rem; /* 88px - Desktop */
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .animated-line {
+      font-size: 6.5rem; /* 104px - Large desktop */
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .animated-line {
+      font-size: 7.5rem; /* 120px - XL screens */
+    }
+  }
+
+  /* Beautiful Gradient Text Effects */
+  .gradient-text-1 {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow1 4s ease infinite;
+  }
+
+  .gradient-text-2 {
+    background: linear-gradient(225deg, #8b5cf6, #ec4899, #f59e0b);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow2 3.5s ease infinite reverse;
+  }
+
+  .gradient-text-3 {
+    background: linear-gradient(315deg, #ec4899, #f59e0b, #10b981);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientFlow3 4.5s ease infinite;
+  }
+
+  @keyframes gradientFlow1 {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes gradientFlow2 {
+    0%, 100% {
+      background-position: 100% 0%;
+    }
+    50% {
+      background-position: 0% 100%;
+    }
+  }
+
+  @keyframes gradientFlow3 {
+    0%, 100% {
+      background-position: 50% 0%;
+    }
+    50% {
+      background-position: 50% 100%;
+    }
+  }
+
+  /* Hover Effects */
+  .animated-line:hover span {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+
+  /* Accessibility - Reduced Motion */
+  @media (prefers-reduced-motion: reduce) {
+    .animated-line {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    
+    .gradient-text-1,
+    .gradient-text-2,
+    .gradient-text-3 {
+      animation: none;
+      background-size: 100% 100%;
+      background-position: center;
+    }
+  }
 </style>
 
 <script>
@@ -471,4 +597,20 @@ const heroData = {
   (window as any).openRoadmap = openRoadmap;
   (window as any).closeRoadmap = closeRoadmap;
   (window as any).navigateToSection = navigateToSection;
+
+  // Animate the three-line headline with enhanced effects
+  const headlineLines = document.querySelectorAll('[data-line]');
+  headlineLines.forEach((line, index) => {
+    animate(
+      line,
+      { 
+        opacity: [0, 1], 
+        transform: ['translateY(60px) rotateX(30deg) scale(0.9)', 'translateY(0px) rotateX(0deg) scale(1)']
+      },
+      { 
+        duration: 1.2, 
+        delay: 0.5 + (index * 0.3)
+      }
+    );
+  });
 </script>

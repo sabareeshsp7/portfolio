@@ -1,0 +1,18 @@
+---
+// Enable prerendering for this page (static generation)
+export const prerender = true;
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Roadmap from '../components/Roadmap.astro';
+import About from '../components/About.astro';
+
+import Contact from '../components/Contact.astro';
+---
+<BaseLayout>
+  <Header />
+  <Hero />
+  <Roadmap />
+  <About />  <Contact />
+</BaseLayout>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EmailJS Configuration Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #1a1a1a; color: white; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .step { background: #2a2a2a; padding: 20px; margin: 20px 0; border-radius: 10px; border-left: 4px solid #6366f1; }
+        .success { border-left-color: #10b981; }
+        .error { border-left-color: #ef4444; }
+        .code { background: #333; padding: 10px; border-radius: 5px; font-family: monospace; margin: 10px 0; }
+        button { background: linear-gradient(to right, #6366f1, #ec4899); color: white; padding: 12px 24px; border: none; border-radius: 25px; cursor: pointer; font-weight: bold; margin: 10px 5px; }
+        input { width: 200px; padding: 8px; margin: 5px; background: #333; border: 1px solid #555; color: white; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 EmailJS Setup Helper</h1>
+        <p>Use this page to test your EmailJS configuration before updating your contact form.</p>
+        
+        <div class="step">
+            <h3>Step 1: Enter Your EmailJS Credentials</h3>
+            <p>Get these from your EmailJS dashboard:</p>
+            <div>
+                <label>Public Key: </label>
+                <input type="text" id="publicKey" placeholder="pk_test_..." />
+            </div>
+            <div>
+                <label>Service ID: </label>
+                <input type="text" id="serviceId" placeholder="service_..." />
+            </div>
+            <div>
+                <label>Template ID: </label>
+                <input type="text" id="templateId" placeholder="template_..." />
+            </div>
+            <button onclick="initEmailJS()">Initialize EmailJS</button>
+        </div>
+        
+        <div class="step">
+            <h3>Step 2: Test Email Sending</h3>
+            <div>
+                <label>Your Name: </label>
+                <input type="text" id="testName" value="Test User" />
+            </div>
+            <div>
+                <label>Your Email: </label>
+                <input type="email" id="testEmail" value="test@example.com" />
+            </div>
+            <div>
+                <label>Subject: </label>
+                <input type="text" id="testSubject" value="EmailJS Test" />
+            </div>
+            <div>
+                <label>Message: </label>
+                <input type="text" id="testMessage" value="This is a test message to verify EmailJS is working." />
+            </div>
+            <button onclick="sendTestEmail()">Send Test Email</button>
+        </div>
+        
+        <div id="result" class="step" style="display: none;">
+            <h3>Result:</h3>
+            <div id="resultContent"></div>
+        </div>
+        
+        <div class="step">
+            <h3>Step 3: Update Your Contact Form</h3>
+            <p>Once the test above works, copy these values to your Contact.astro file:</p>
+            <div class="code" id="codeSnippet">
+                // Line 320 - Replace YOUR_PUBLIC_KEY_HERE with:<br>
+                "<span id="displayPublicKey">YOUR_PUBLIC_KEY_HERE</span>"<br><br>
+                
+                // Lines 375-376 - Replace YOUR_SERVICE_ID and YOUR_TEMPLATE_ID with:<br>
+                '<span id="displayServiceId">YOUR_SERVICE_ID</span>',<br>
+                '<span id="displayTemplateId">YOUR_TEMPLATE_ID</span>',
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        let isInitialized = false;
+
+        function initEmailJS() {
+            const publicKey = document.getElementById('publicKey').value;
+            if (!publicKey) {
+                showResult('Please enter your Public Key first!', 'error');
+                return;
+            }
+            
+            try {
+                emailjs.init(publicKey);
+                isInitialized = true;
+                showResult('✅ EmailJS initialized successfully!', 'success');
+                
+                // Update code snippet
+                document.getElementById('displayPublicKey').textContent = publicKey;
+                document.getElementById('displayServiceId').textContent = document.getElementById('serviceId').value || 'YOUR_SERVICE_ID';
+                document.getElementById('displayTemplateId').textContent = document.getElementById('templateId').value || 'YOUR_TEMPLATE_ID';
+            } catch (error) {
+                showResult('❌ Failed to initialize EmailJS: ' + error.message, 'error');
+            }
+        }
+
+        async function sendTestEmail() {
+            if (!isInitialized) {
+                showResult('Please initialize EmailJS first!', 'error');
+                return;
+            }
+
+            const serviceId = document.getElementById('serviceId').value;
+            const templateId = document.getElementById('templateId').value;
+            
+            if (!serviceId || !templateId) {
+                showResult('Please enter Service ID and Template ID!', 'error');
+                return;
+            }
+
+            const templateParams = {
+                from_name: document.getElementById('testName').value,
+                from_email: document.getElementById('testEmail').value,
+                subject: document.getElementById('testSubject').value,
+                message: document.getElementById('testMessage').value,
+                to_email: 'sabareeshsp7@gmail.com'
+            };
+
+            try {
+                showResult('Sending test email...', 'info');
+                const result = await emailjs.send(serviceId, templateId, templateParams);
+                showResult('🎉 Test email sent successfully! Check your inbox at sabareeshsp7@gmail.com', 'success');
+                
+                // Update code snippet with working values
+                document.getElementById('displayServiceId').textContent = serviceId;
+                document.getElementById('displayTemplateId').textContent = templateId;
+                
+            } catch (error) {
+                showResult('❌ Failed to send email: ' + error.text || error.message, 'error');
+            }
+        }
+
+        function showResult(message, type) {
+            const result = document.getElementById('result');
+            const content = document.getElementById('resultContent');
+            
+            result.style.display = 'block';
+            content.innerHTML = message;
+            
+            result.className = 'step ' + type;
+        }
+    </script>
+</body>
+</html>

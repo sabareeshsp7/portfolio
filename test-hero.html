@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Component Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/motion@latest/dist/motion.js"></script>
+    <style>
+        /* Gradient Animation for Text */
+        @keyframes gradient-x {
+            0%, 100% {
+                background-size: 200% 200%;
+                background-position: left center;
+            }
+            50% {
+                background-size: 200% 200%;
+                background-position: right center;
+            }
+        }
+
+        .animate-gradient-x {
+            background-size: 200% 200%;
+            animation: gradient-x 4s ease infinite;
+        }
+
+        /* Animated Headline Styles */
+        .animated-headline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .animated-headline-line {
+            display: block;
+            line-height: 1.1;
+            margin: 0;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .animated-headline-line span {
+            display: inline-block;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+        }
+
+        /* Responsive text sizing for headline */
+        @media (max-width: 640px) {
+            .animated-headline-line {
+                font-size: 1.875rem; /* 30px */
+                line-height: 1;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 768px) {
+            .animated-headline-line {
+                font-size: 2.25rem; /* 36px */
+                line-height: 1;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .animated-headline-line {
+                font-size: 3rem; /* 48px */
+                line-height: 1;
+            }
+        }
+
+        @media (min-width: 1025px) and (max-width: 1280px) {
+            .animated-headline-line {
+                font-size: 3.75rem; /* 60px */
+                line-height: 1;
+            }
+        }
+
+        @media (min-width: 1281px) and (max-width: 1536px) {
+            .animated-headline-line {
+                font-size: 4.5rem; /* 72px */
+                line-height: 1;
+            }
+        }
+
+        @media (min-width: 1537px) {
+            .animated-headline-line {
+                font-size: 5.25rem; /* 84px */
+                line-height: 1;
+            }
+        }
+
+        /* Enhanced gradient animations with different speeds */
+        .animated-headline-line:nth-child(1) span {
+            animation: gradient-x 3.5s ease infinite;
+        }
+
+        .animated-headline-line:nth-child(2) span {
+            animation: gradient-x 4.2s ease infinite;
+        }
+
+        .animated-headline-line:nth-child(3) span {
+            animation: gradient-x 3.8s ease infinite;
+        }
+
+        /* Staggered hover effects */
+        .animated-headline-line:hover span {
+            transform: scale(1.02);
+            transition: transform 0.3s ease;
+        }
+
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            .animate-gradient-x,
+            .animated-headline-line span {
+                animation: none;
+            }
+            
+            .animated-headline-line {
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            
+            /* Still show gradient colors but without animation */
+            .animated-headline-line span {
+                background-size: 100% 100% !important;
+                background-position: center !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+    <section class="min-h-screen bg-gray-900 flex items-center px-8 lg:px-16 pt-24">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                <!-- Left Side - Hero Image -->
+                <div class="order-1 lg:order-1 flex justify-center lg:justify-start" data-animate="image">
+                    <div class="relative group">
+                        <div class="relative w-64 h-80 md:w-72 md:h-90 lg:w-80 lg:h-96 xl:w-84 xl:h-[420px] rounded-2xl overflow-hidden shadow-2xl">
+                            <div class="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 z-0"></div>
+                            <div class="absolute inset-0 z-10 flex items-center justify-center text-white text-2xl font-bold bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600">
+                                <div class="text-center">
+                                    <div class="text-6xl mb-4">👨‍💻</div>
+                                    <div class="text-xl">Sabari</div>
+                                    <div class="text-sm text-gray-200 mt-2">AI/ML Engineer</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Side - Personal Brand Content -->
+                <div class="order-2 lg:order-2 text-center lg:text-left" data-animate="content">
+                    <!-- Animated Three-Line Headline -->
+                    <div class="space-y-4 mb-8">
+                        <h1 class="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-white leading-tight space-y-2">
+                            <div class="animated-headline-container">
+                                <div class="animated-headline-line" data-line="1" style="opacity: 0; transform: translateY(30px);">
+                                    <span class="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent animate-gradient-x">
+                                        Building code that cares
+                                    </span>
+                                </div>
+                                <div class="animated-headline-line" data-line="2" style="opacity: 0; transform: translateY(30px);">
+                                    <span class="bg-gradient-to-r from-purple-400 via-pink-400 to-purple-500 bg-clip-text text-transparent animate-gradient-x">
+                                        systems that scale
+                                    </span>
+                                </div>
+                                <div class="animated-headline-line" data-line="3" style="opacity: 0; transform: translateY(30px);">
+                                    <span class="bg-gradient-to-r from-pink-400 via-orange-400 to-pink-500 bg-clip-text text-transparent animate-gradient-x">
+                                        And ideas that matter
+                                    </span>
+                                </div>
+                            </div>
+                        </h1>
+                    </div>
+
+                    <!-- Skills Tags -->
+                    <div class="flex flex-wrap justify-center lg:justify-start gap-2 mb-8">
+                        <span class="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-sm font-medium border border-gray-700">AI/ML Enthusiast</span>
+                        <span class="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-sm font-medium border border-gray-700">Full-Stack Developer</span>
+                        <span class="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-sm font-medium border border-gray-700">Open Source Contributor</span>
+                    </div>
+
+                    <!-- Call-to-Action Button -->
+                    <div class="flex justify-center">
+                        <button class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-full text-lg md:text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl transform" data-animate="cta" style="opacity: 0; transform: translateY(20px);">
+                            <span class="flex items-center gap-2">
+                                Explore My Journey
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Wait for Motion library to load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof Motion !== 'undefined') {
+                const { animate } = Motion;
+
+                // Animate image from left
+                animate(
+                    "[data-animate='image']",
+                    { opacity: 1, x: 0 },
+                    { duration: 0.8, delay: 0.2 }
+                );
+
+                // Animate headline lines with staggered effect
+                const headlineLines = document.querySelectorAll('[data-line]');
+                headlineLines.forEach((line, index) => {
+                    animate(
+                        line,
+                        { 
+                            opacity: 1, 
+                            y: 0
+                        },
+                        { 
+                            duration: 0.8, 
+                            delay: 0.4 + (index * 0.2)
+                        }
+                    );
+                });
+
+                // Animate content from right (skills and description)
+                animate(
+                    "[data-animate='content'] > div:not(.space-y-4)",
+                    { opacity: 1, x: 0 },
+                    { duration: 0.8, delay: 1.2 }
+                );
+
+                // Animate CTA button
+                animate(
+                    "[data-animate='cta']",
+                    { opacity: 1, y: 0 },
+                    { duration: 0.6, delay: 1.4 }
+                );
+            }
+        });
+    </script>
+</body>
+</html>

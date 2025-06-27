@@ -2,7 +2,6 @@
 // Navigation data
 const navItems = [
   { href: "#about", label: "About", icon: "👨‍💻" },
-  { href: "#projects", label: "Projects", icon: "🚀" },
   { href: "#contact", label: "Contact", icon: "📧" }
 ];
 ---
@@ -10,15 +9,14 @@ const navItems = [
 <header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-md border-b border-gray-700/50 shadow-lg" role="banner">
   <nav class="max-w-7xl mx-auto px-8 py-4" aria-label="Main navigation">
     <div class="flex justify-between items-center">
-      
-      <!-- Logo/Brand -->
+        <!-- Logo/Brand -->
       <div class="flex items-center space-x-2">
         <div class="w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 rounded-lg flex items-center justify-center">
-          <span class="text-white font-bold text-lg">🧠</span>
+          <span class="text-white font-bold text-lg">👨‍💻</span>
         </div>
         <h1 class="text-xl font-black text-white">
           <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            AI Portfolio
+            Sabareesh Portfolio
           </span>
         </h1>
       </div>
@@ -166,8 +164,7 @@ const navItems = [
   }
 </style>
 
-<script>
-  // Mobile menu functionality
+<script>  // Mobile menu functionality
   function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
     const button = document.getElementById('mobile-menu-button');
@@ -194,6 +191,10 @@ const navItems = [
       button.setAttribute('aria-expanded', 'false');
     }
   }
+
+  // Make functions globally available
+  (window as any).toggleMobileMenu = toggleMobileMenu;
+  (window as any).closeMobileMenu = closeMobileMenu;
     // Smooth scroll to explore section
   function scrollToExplore() {
     const heroSection = document.querySelector('section[role="main"]');
