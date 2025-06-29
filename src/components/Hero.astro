@@ -30,9 +30,9 @@ const heroData = {
             <img 
               src="/sabari.png"
               alt="Developer Portfolio - Professional headshot"
-              class="absolute inset-0 w-full h-full object-cover object-center transition-all duration-700 group-hover:scale-105 z-50 rounded-2xl"
+              class="absolute inset-0 w-full h-full object-cover object-top transition-all duration-700 group-hover:scale-105 z-50 rounded-2xl"
               loading="eager"
-              style="z-index: 100 !important; position: absolute !important; opacity: 1 !important;"
+              style="z-index: 100 !important; position: absolute !important; opacity: 1 !important; object-position: center top;"
               onerror="console.log('❌ Image failed to load:', this.src); this.style.display='none'; this.parentElement.querySelector('.fallback-visible').style.display='flex';"
               onload="console.log('✅ Image loaded successfully:', this.src); this.parentElement.querySelector('.fallback-visible').style.display='none';"
             />
@@ -90,19 +90,17 @@ const heroData = {
         </div>        <!-- Personal Introduction -->
         <p class="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl leading-relaxed">
           {heroData.description}
-        </p>
-
-        <!-- Call-to-Action Button - Centered on All Devices -->
+        </p>        <!-- Call-to-Action Button - Centered on All Devices -->
         <div class="flex justify-center">
           <button 
             class="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-full text-lg md:text-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl transform active:scale-95 focus:outline-none focus:ring-4 focus:ring-purple-500/50"
             style="opacity: 0; transform: translateY(20px);"
             data-animate="cta"
-            onclick="openRoadmap()"
-            aria-label={`${heroData.ctaText} - Open interactive roadmap`}
+            onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})"
+            aria-label="Get in touch - Navigate to contact section"
           >
             <span class="flex items-center gap-2">
-              {heroData.ctaText}
+              Let's Connect
               <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
               </svg>
@@ -118,116 +116,7 @@ const heroData = {
     </div>  </div>
 </section>
 
-<!-- Roadmap Modal -->
-<div 
-  id="roadmap-modal" 
-  class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4"
-  onclick="closeRoadmap()"
-  role="dialog"
-  aria-labelledby="roadmap-title"
-  aria-describedby="roadmap-description"
->
-  <div 
-    class="roadmap-content bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 p-8 rounded-2xl max-w-2xl w-full border border-gray-700 shadow-2xl"
-    onclick="event.stopPropagation()"
-  >
-    <!-- Modal Header -->
-    <div class="flex justify-between items-center mb-8">
-      <div>
-        <h2 id="roadmap-title" class="text-3xl font-bold text-white mb-2">
-          🗺️ My Developer Journey
-        </h2>
-        <p id="roadmap-description" class="text-gray-400">
-          Explore my path as an AI/ML enthusiast and software engineer
-        </p>
-      </div>
-      <button 
-        onclick="closeRoadmap()"
-        class="text-gray-400 hover:text-white transition-colors p-2 rounded-full hover:bg-gray-700"
-        aria-label="Close roadmap modal"
-      >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-    </div>
-
-    <!-- Roadmap Steps -->
-    <div class="space-y-6">
-      <!-- Step 1: About -->
-      <div 
-        class="roadmap-step flex items-center p-4 rounded-xl bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500/30 hover:border-blue-400 transition-all duration-300 cursor-pointer group"
-        onclick="navigateToSection('about')"
-      >
-        <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center mr-4">
-          <span class="text-white font-bold text-lg">1</span>
-        </div>
-        <div class="flex-grow">
-          <h3 class="text-xl font-bold text-white mb-1 group-hover:text-blue-300 transition-colors">
-            👨‍💻 About Me
-          </h3>
-          <p class="text-gray-400 text-sm">
-            Learn about my background, skills, and passion for AI/ML development
-          </p>
-        </div>
-        <svg class="w-5 h-5 text-gray-400 group-hover:text-blue-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </div>
-
-      <!-- Step 2: Projects -->
-      <div 
-        class="roadmap-step flex items-center p-4 rounded-xl bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 hover:border-purple-400 transition-all duration-300 cursor-pointer group"
-        onclick="navigateToSection('projects')"
-      >
-        <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-4">
-          <span class="text-white font-bold text-lg">2</span>
-        </div>
-        <div class="flex-grow">
-          <h3 class="text-xl font-bold text-white mb-1 group-hover:text-purple-300 transition-colors">
-            🚀 My Projects
-          </h3>
-          <p class="text-gray-400 text-sm">
-            Explore my AI/ML projects, web applications, and open-source contributions
-          </p>
-        </div>
-        <svg class="w-5 h-5 text-gray-400 group-hover:text-purple-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </div>
-
-      <!-- Step 3: Contact -->
-      <div 
-        class="roadmap-step flex items-center p-4 rounded-xl bg-gradient-to-r from-pink-600/20 to-orange-600/20 border border-pink-500/30 hover:border-pink-400 transition-all duration-300 cursor-pointer group"
-        onclick="navigateToSection('contact')"
-      >
-        <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-pink-500 to-orange-600 rounded-full flex items-center justify-center mr-4">
-          <span class="text-white font-bold text-lg">3</span>
-        </div>
-        <div class="flex-grow">
-          <h3 class="text-xl font-bold text-white mb-1 group-hover:text-pink-300 transition-colors">
-            📧 Get In Touch
-          </h3>
-          <p class="text-gray-400 text-sm">
-            Ready to collaborate? Let's connect and build something amazing together
-          </p>
-        </div>
-        <svg class="w-5 h-5 text-gray-400 group-hover:text-pink-300 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-        </svg>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="mt-8 pt-6 border-t border-gray-700 text-center">
-      <p class="text-gray-400 text-sm">
-        ✨ Click any step to begin your journey through my portfolio
-      </p>
-    </div>
-  </div>
-</div>
-
-<style>  /* Custom tech-focused animations */
+<style>/* Custom tech-focused animations */
   @keyframes float {
     0%, 100% { transform: translateY(0px) rotate(0deg); }
     50% { transform: translateY(-10px) rotate(2deg); }
@@ -370,41 +259,40 @@ const heroData = {
       transform: translateY(0) rotateX(0deg) scale(1);
     }
   }
-
-  /* Responsive Font Sizes - Large and Elegant */
+  /* Responsive Font Sizes - Medium and Balanced */
   .animated-line {
-    font-size: 2.5rem; /* 40px - Mobile */
+    font-size: 1.875rem; /* 30px - Mobile */
     line-height: 0.9;
     letter-spacing: -0.02em;
   }
 
   @media (min-width: 640px) {
     .animated-line {
-      font-size: 3.5rem; /* 56px - Small tablet */
+      font-size: 2.25rem; /* 36px - Small tablet */
     }
   }
 
   @media (min-width: 768px) {
     .animated-line {
-      font-size: 4.5rem; /* 72px - Tablet */
+      font-size: 2.75rem; /* 44px - Tablet */
     }
   }
 
   @media (min-width: 1024px) {
     .animated-line {
-      font-size: 5.5rem; /* 88px - Desktop */
+      font-size: 3.25rem; /* 52px - Desktop/Laptop */
     }
   }
 
   @media (min-width: 1280px) {
     .animated-line {
-      font-size: 6.5rem; /* 104px - Large desktop */
+      font-size: 3.75rem; /* 60px - Large desktop */
     }
   }
 
   @media (min-width: 1536px) {
     .animated-line {
-      font-size: 7.5rem; /* 120px - XL screens */
+      font-size: 4.25rem; /* 68px - XL screens */
     }
   }
 
@@ -482,8 +370,7 @@ const heroData = {
     .gradient-text-3 {
       animation: none;
       background-size: 100% 100%;
-      background-position: center;
-    }
+      background-position: center;    }
   }
 </style>
 
@@ -542,61 +429,11 @@ const heroData = {
         { duration: 0.3 }
       );
     });
-  });
-  // Add floating animation to the image
+  });  // Add floating animation to the image
   const imageElement = document.querySelector('[data-animate="image"] > div');
   if (imageElement) {
     imageElement.classList.add('floating');
   }
-
-  // Roadmap Modal Functionality
-  function openRoadmap() {
-    const modal = document.getElementById('roadmap-modal');
-    if (modal) {
-      modal.style.display = 'flex';
-      // Animate modal in
-      animate(
-        '#roadmap-modal',
-        { opacity: [0, 1] },
-        { duration: 0.3 }
-      );
-      animate(
-        '.roadmap-content',
-        { transform: ['scale(0.8) translateY(20px)', 'scale(1) translateY(0px)'] },
-        { duration: 0.4, delay: 0.1 }
-      );
-    }
-  }
-
-  function closeRoadmap() {
-    const modal = document.getElementById('roadmap-modal');
-    if (modal) {
-      animate(
-        '#roadmap-modal',
-        { opacity: [1, 0] },
-        { duration: 0.2 }
-      ).finished.then(() => {
-        modal.style.display = 'none';
-      });
-    }
-  }
-  function navigateToSection(sectionId: string) {
-    closeRoadmap();
-    setTimeout(() => {
-      const section = document.getElementById(sectionId);
-      if (section) {
-        section.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    }, 300);
-  }
-
-  // Make functions globally available
-  (window as any).openRoadmap = openRoadmap;
-  (window as any).closeRoadmap = closeRoadmap;
-  (window as any).navigateToSection = navigateToSection;
 
   // Animate the three-line headline with enhanced effects
   const headlineLines = document.querySelectorAll('[data-line]');

@@ -2,19 +2,18 @@
 // Navigation data
 const navItems = [
   { href: "#about", label: "About", icon: "👨‍💻" },
-  { href: "#contact", label: "Contact", icon: "📧" }
+  { href: "#projects", label: "Projects", icon: "📁" },
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-md border-b border-gray-700/50 shadow-lg" role="banner">
+<header id="header" class="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-700/50 shadow-lg" role="banner">
   <nav class="max-w-7xl mx-auto px-8 py-4" aria-label="Main navigation">
     <div class="flex justify-between items-center">
         <!-- Logo/Brand -->
       <div class="flex items-center space-x-2">
         <div class="w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-600 to-pink-500 rounded-lg flex items-center justify-center">
           <span class="text-white font-bold text-lg">👨‍💻</span>
-        </div>
-        <h1 class="text-xl font-black text-white">
+        </div>        <h1 class="text-xl font-black text-gray-900 dark:text-white">
           <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
             Sabareesh Portfolio
           </span>
@@ -24,18 +23,32 @@ const navItems = [
       <!-- Desktop Navigation -->
       <ul class="hidden md:flex items-center space-x-2" role="menubar">
         {navItems.map((item) => (
-          <li role="none">
-            <a 
+          <li role="none">            <a 
               href={item.href}
-              class="flex items-center gap-2 px-4 py-2 rounded-full text-gray-300 hover:text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-600/20 hover:to-purple-600/20 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+              class="flex items-center gap-2 px-4 py-2 rounded-full text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-600/20 hover:to-purple-600/20 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
               role="menuitem"
               aria-label={`Navigate to ${item.label} section`}
             >
               <span class="text-sm">{item.icon}</span>
               <span class="font-medium">{item.label}</span>
             </a>
-          </li>
-        ))}
+          </li>        ))}
+        
+        <!-- Theme Toggle Button -->
+        <li role="none">          <button 
+            id="theme-toggle"
+            class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-300 hover:bg-gradient-to-r hover:from-blue-600/20 hover:to-purple-600/20 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
+            aria-label="Toggle dark/light mode"
+          >
+            <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+            <svg id="theme-toggle-light-icon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </li>
+
           <!-- CTA Button in Header -->
         <li role="none">
           <button 
@@ -45,7 +58,7 @@ const navItems = [
           >
             <span class="flex items-center gap-2">
               <span>✨</span>
-              Explore Journey
+              Get In Touch
             </span>
           </button>
         </li>
@@ -86,18 +99,18 @@ const navItems = [
                 <span class="text-lg">{item.icon}</span>
                 <span class="font-medium">{item.label}</span>
               </a>
-            </li>
-          ))}
-            <!-- Mobile CTA -->
+            </li>          ))}
+          
+          <!-- Mobile CTA -->
           <li role="none" class="pt-3 border-t border-gray-700">
             <button 
-              class="w-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 hover:from-blue-700 hover:via-purple-700 hover:to-pink-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl transform active:scale-95"
-              onclick="openRoadmapFromHeader(); closeMobileMenu()"
-              aria-label="Explore my journey - open interactive roadmap"
+              class="w-full bg-gradient-to-r from-green-600 via-teal-600 to-blue-600 hover:from-green-700 hover:via-teal-700 hover:to-blue-700 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-xl transform active:scale-95"
+              onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'}); closeMobileMenu()"
+              aria-label="Contact me"
             >
               <span class="flex items-center justify-center gap-2">
-                <span>✨</span>
-                Explore My Journey
+                <span>📧</span>
+                Get In Touch
               </span>
             </button>
           </li>
@@ -232,20 +245,63 @@ const navItems = [
         // Scrolling up - show header
         header.style.transform = 'translateY(0)';
       }
-      
-      // Add backdrop blur based on scroll
+        // Add backdrop blur based on scroll
       if (currentScrollY > 50) {
-        header.classList.add('bg-gray-900/98');
-        header.classList.remove('bg-gray-900/95');
+        header.classList.add('bg-white/98', 'dark:bg-gray-900/98');
+        header.classList.remove('bg-white/95', 'dark:bg-gray-900/95');
       } else {
-        header.classList.add('bg-gray-900/95');
-        header.classList.remove('bg-gray-900/98');
+        header.classList.add('bg-white/95', 'dark:bg-gray-900/95');
+        header.classList.remove('bg-white/98', 'dark:bg-gray-900/98');
       }
     }
     
-    lastScrollY = currentScrollY;
-  });
-    // Close mobile menu when clicking outside
+    lastScrollY = currentScrollY;  });
+    
+  // Theme Toggle Functionality
+  function initTheme() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    
+    // Check if user has a saved preference, otherwise check system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    let currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    
+    // Apply the theme
+    function applyTheme(theme: string) {
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        darkIcon?.classList.add('hidden');
+        lightIcon?.classList.remove('hidden');
+      } else {
+        document.documentElement.classList.remove('dark');
+        darkIcon?.classList.remove('hidden');
+        lightIcon?.classList.add('hidden');
+      }
+      localStorage.setItem('theme', theme);
+    }
+    
+    // Initialize theme
+    applyTheme(currentTheme);
+    
+    // Theme toggle click handler
+    themeToggle?.addEventListener('click', () => {
+      currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      applyTheme(currentTheme);
+    });
+    
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        currentTheme = e.matches ? 'dark' : 'light';
+        applyTheme(currentTheme);
+      }
+    });
+  }
+  // Initialize theme when DOM is loaded
+  document.addEventListener('DOMContentLoaded', initTheme);// Close mobile menu when clicking outside
   document.addEventListener('click', (e) => {
     const menu = document.getElementById('mobile-menu');
     const button = document.getElementById('mobile-menu-button');
